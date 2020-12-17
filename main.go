@@ -10,24 +10,6 @@ func main() {
 	//CodeWarsBuddyPairs()
 	//CodeWarsEasyDiagonal()
 	//CodeWarsConsecutiveFibNumbers()
-	CodeWarsTargetDate()
+	//CodeWarsTargetDate()
+	CodeWarsEasyLine()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
