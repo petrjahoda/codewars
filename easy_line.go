@@ -1,7 +1,7 @@
 package main
 
 import (
-	"strconv"
+	"math/big"
 )
 
 func CodeWarsEasyLine() {
@@ -15,20 +15,26 @@ func CodeWarsEasyLine() {
 }
 
 func easyline(n int) string {
-	var sum uint64
-	var temp uint64
+	sum := big.NewInt(0)
+	temp := big.NewInt(0)
+	result := big.NewInt(0)
 	for row := 0; row <= n; row++ {
-		sum = 0
-		temp = 1
+		result.SetUint64(0)
+		sum.SetUint64(0)
+		temp.SetUint64(1)
 		for column := 0; column <= row; column++ {
 			if column == 0 || row == 0 {
-				temp = 1
+				temp.SetUint64(1)
 			} else {
-				temp = temp * (uint64(row) - uint64(column) + 1) / uint64(column)
+				integer := row - column + 1
+				multiplicator := big.NewInt(int64(integer))
+				temp.Mul(temp, multiplicator)
+				columnIndicator := big.NewInt(int64(column))
+				temp.Div(temp, columnIndicator)
 			}
-			sum += temp * temp
+			result.Mul(temp, temp)
+			sum.Add(sum, result)
 		}
 	}
-	return strconv.FormatUint(sum, 10)
-	//todo: problem with integer overflow, convert to bigint
+	return sum.Text(10)
 }
